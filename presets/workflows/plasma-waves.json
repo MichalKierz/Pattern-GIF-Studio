@@ -1,0 +1,54 @@
+{
+  "asset_type": "workflow_preset",
+  "schema_version": 1,
+  "name": "Plasma Waves",
+  "render_params": {
+    "patterns": [
+      {
+        "name": "Water surface",
+        "enabled": true,
+        "source": {
+          "expression": "0.5 + 0.5 * sin(y * scale * 26 + sin(x * scale * 6 + t * motion * 2) * 2.4 + noise(x * 4 + t * motion, y * 4 + u * motion) * 4)",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Flowing wave field",
+              "expression": "0.5 + 0.5 * sin(y * scale * 26 + sin(x * scale * 6 + t * motion * 2) * 2.4 + noise(x * 4 + t * motion, y * 4 + u * motion) * 4)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace",
+              "warp_x": 0.8,
+              "motion_x": 0.7
+            },
+            {
+              "name": "Caustic net",
+              "expression": "smoothstep(0.62, 0.98, abs(sin((x + noise(x * 5 + t, y * 5) * 0.35) * scale * 24) * cos((y + noise(y * 5 - u, x * 5) * 0.35) * scale * 22)))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.48,
+              "blend_mode": "screen",
+              "warp_y": -0.35
+            }
+          ]
+        },
+        "strength": 1,
+        "scale": 1.2,
+        "motion": 0.85
+      }
+    ],
+    "effects": [],
+    "zoom": 1.4,
+    "rotation_speed": 0,
+    "color_speed": 0.75,
+    "palette": "aurora",
+    "symmetry": 3,
+    "distortion": 1.2,
+    "detail": 1.4,
+    "smoothing": 8,
+    "smoothing_radius_pixels": 1.4,
+    "brightness": 1.05,
+    "contrast": 1.25
+  }
+}

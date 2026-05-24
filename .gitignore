@@ -1,0 +1,26 @@
+# Rust build outputs
+/target/
+/target_test/
+/.cargo-home/
+
+# IDE/user-local files
+/.idea/
+/.vscode/
+
+# Native build artifacts
+*.pdb
+*.exe
+*.dll
+
+# Generated GIF/export/runtime data
+*.gif
+!/showcase/
+!/showcase/*.gif
+/exports/
+/app_data/
+/custom_assets/
+
+# Generated release/audit artifacts
+/build/portable/
+/target/preset_audit/
+/target/release_audit/

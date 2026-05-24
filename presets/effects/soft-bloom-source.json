@@ -1,0 +1,34 @@
+{
+  "asset_type": "effect_source",
+  "schema_version": 1,
+  "name": "Soft Bloom Modulator",
+  "source": {
+    "expression": "0.8 + 0.2 * smoothstep(0.25, 0.95, fbm(x * scale * 2, y * scale * 2) * 0.5 + 0.5)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [],
+    "layers": [
+      {
+        "name": "Soft bloom field",
+        "enabled": true,
+        "expression": "0.8 + 0.2 * smoothstep(0.25, 0.95, fbm(x * scale * 2, y * scale * 2) * 0.5 + 0.5)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ],
+    "effect_blend_mode": "screen"
+  }
+}

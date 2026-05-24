@@ -1,0 +1,34 @@
+{
+  "asset_type": "effect_source",
+  "schema_version": 1,
+  "name": "Noise Vignette Modulator",
+  "source": {
+    "expression": "0.68 + 0.32 * (1 - smoothstep(0.2, 1.2, r + fbm(x * scale * 3, y * scale * 3) * 0.22))",
+    "gain": 1,
+    "bias": 0,
+    "controls": [],
+    "layers": [
+      {
+        "name": "Noise Vignette",
+        "enabled": true,
+        "expression": "0.68 + 0.32 * (1 - smoothstep(0.2, 1.2, r + fbm(x * scale * 3, y * scale * 3) * 0.22))",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ],
+    "effect_blend_mode": "mask"
+  }
+}

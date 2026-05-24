@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Radial Noise Lens",
+  "source": {
+    "expression": "0.5 + 0.5 * sin((r + fbm(x * p1, y * p1) * p2) * scale * 18)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "noise scale",
+        "value": 3.5
+      },
+      {
+        "name": "lens amount",
+        "value": 0.33
+      }
+    ],
+    "layers": [
+      {
+        "name": "Lens distortion",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * sin((r + fbm(x * p1, y * p1) * p2) * scale * 18)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x / (0.55 + r) + fbm(x * 2, y * 2) * 0.16",
+        "domain_y": "y / (0.55 + r) + fbm(y * 2, x * 2) * 0.16",
+        "domain_influence": 0.9
+      },
+      {
+        "name": "Angular scratches",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * sin(a * symmetry * 2 + prev * 8)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.3,
+        "blend_mode": "screen",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Orbit Trap Filaments",
+  "source": {
+    "expression": "1 - smoothstep(0.08, 0.9, abs(julia(x * scale, y * scale, -0.5 + t * 0.2, 0.42 + u * 0.2) - p1))",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "trap level",
+        "value": 0.32
+      }
+    ],
+    "layers": [
+      {
+        "name": "Julia orbit trap",
+        "enabled": true,
+        "expression": "1 - smoothstep(0.08, 0.9, abs(julia(x * scale, y * scale, -0.5 + t * 0.2, 0.42 + u * 0.2) - p1))",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + sin(y * 2 + t) * 0.12",
+        "domain_y": "y + cos(x * 2 + u) * 0.12",
+        "domain_influence": 0.45
+      },
+      {
+        "name": "Filament comb",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * sin(prev * 40 + a * symmetry)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.48,
+        "blend_mode": "difference",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Deep Water Domain Flow",
+  "source": {
+    "expression": "0.5 + 0.5 * sin(y * scale * 18 + fbm(x * 3, y * 3) * 5 + t * motion)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "flow scale",
+        "value": 2.6
+      },
+      {
+        "name": "warp amount",
+        "value": 0.32
+      }
+    ],
+    "layers": [
+      {
+        "name": "Broad current warp",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * sin(y * scale * 18 + fbm(x * 3, y * 3) * 5 + t * motion)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + fbm(x * p1 + t * motion, y * p1 + u * motion) * p2",
+        "domain_y": "y + fbm(x * p1 - u * motion, y * p1 + t * motion) * p2",
+        "domain_influence": 0.85
+      },
+      {
+        "name": "Small crossing ripples",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * sin((x + y) * scale * 24 + fbm(x * 8, y * 8) * 3)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.45,
+        "blend_mode": "screen",
+        "repeat_x": 1.1,
+        "repeat_y": 0.9,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0.25,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "asset_type": "effect_source",
+  "schema_version": 1,
+  "name": "Radial Vignette Modulator",
+  "source": {
+    "expression": "1 - smoothstep(0.15, 1.25, r)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [],
+    "layers": [
+      {
+        "name": "Vignette falloff",
+        "enabled": true,
+        "expression": "1 - smoothstep(0.15, 1.25, r)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ],
+    "effect_blend_mode": "mask"
+  }
+}

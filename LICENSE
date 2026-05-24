@@ -1,0 +1,7 @@
+License not finalized.
+
+This project depends on third-party Rust crates. Review dependency licenses
+before redistribution.
+
+The licensing note is intentionally conservative because the application is
+planned as a distributable desktop binary.

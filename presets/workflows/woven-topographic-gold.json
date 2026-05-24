@@ -1,0 +1,165 @@
+{
+  "asset_type": "workflow_preset",
+  "schema_version": 1,
+  "name": "Woven Topographic Gold",
+  "render_params": {
+    "patterns": [
+      {
+        "name": "Woven cloth field",
+        "enabled": true,
+        "source": {
+          "expression": "0.5 + 0.5 * sin(sin(x * scale * 12 + t * motion) * 2 + cos(y * scale * 12 - u * motion) * 2)",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Horizontal threads",
+              "expression": "0.5 + 0.5 * sin(y * scale * 30 + sin(x * scale * 4 + t * motion) * 2)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace"
+            },
+            {
+              "name": "Vertical threads",
+              "expression": "0.5 + 0.5 * sin(x * scale * 26 + cos(y * scale * 4 + u * motion) * 2)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.55,
+              "blend_mode": "difference"
+            },
+            {
+              "name": "Thread highlight",
+              "expression": "smoothstep(0.78, 0.98, prev)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.38,
+              "blend_mode": "screen"
+            }
+          ]
+        },
+        "strength": 0.65,
+        "scale": 1.2,
+        "motion": 0.7
+      },
+      {
+        "name": "Topographic contour overlay",
+        "enabled": true,
+        "source": {
+          "expression": "0.5 + 0.5 * sin((noise(x * scale * 5 + t * motion, y * scale * 5 + u * motion) + x * 0.35 - y * 0.2) * 28)",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Topographic lines",
+              "expression": "0.5 + 0.5 * sin((noise(x * scale * 5 + t * motion, y * scale * 5 + u * motion) + x * 0.35 - y * 0.2) * 28)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace",
+              "repeat_x": 1.35,
+              "repeat_y": 0.9,
+              "domain_x": "x + fbm(x * 2 + t, y * 2) * 0.12",
+              "domain_y": "y + fbm(y * 2 + u, x * 2) * 0.12",
+              "domain_influence": 0.65
+            },
+            {
+              "name": "Contour threshold",
+              "expression": "1 - smoothstep(0.0, 0.04, abs(fract(prev * 14) - 0.5) - 0.43)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.5,
+              "blend_mode": "screen"
+            }
+          ]
+        },
+        "strength": 0.58,
+        "scale": 1.0,
+        "motion": -0.55,
+        "camera_orbit": 0.05
+      }
+    ],
+    "effects": [
+      {
+        "name": "Moire difference veil",
+        "enabled": true,
+        "source": {
+          "expression": "0.5 + 0.5 * sin((x * x - y * y) * scale * 18 + t * motion)",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Moire Mask",
+              "expression": "0.5 + 0.5 * sin((x * x - y * y) * scale * 18 + t * motion)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace"
+            }
+          ],
+          "effect_blend_mode": "difference"
+        },
+        "blend_mode": "difference",
+        "strength": 0.35,
+        "scale": 1.8,
+        "motion": 0.9
+      },
+      {
+        "name": "Gold leaf shadow",
+        "enabled": true,
+        "source": {
+          "expression": "0.55 + 0.45 * sin((x + y) * scale * 10 + t * motion)",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Wave Shadow",
+              "expression": "0.55 + 0.45 * sin((x + y) * scale * 10 + t * motion)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace"
+            }
+          ],
+          "effect_blend_mode": "difference"
+        },
+        "blend_mode": "difference",
+        "strength": 0.28,
+        "scale": 2.2,
+        "motion": -1.1
+      }
+    ],
+    "zoom": 1.15,
+    "rotation_speed": 0.01,
+    "color_speed": 0.64,
+    "color_phase": 0.12,
+    "palette": "fire",
+    "custom_gradient": {
+      "enabled": true,
+      "colors": [
+        [0.02, 0.01, 0.00],
+        [0.34, 0.16, 0.02],
+        [0.72, 0.42, 0.06],
+        [1.00, 0.76, 0.18],
+        [1.00, 0.96, 0.54],
+        [0.18, 0.07, 0.02]
+      ],
+      "color_transitions": [
+        [{"color": [0.06, 0.02, 0.00]}],
+        [{"color": [0.48, 0.24, 0.04]}],
+        [{"color": [0.90, 0.55, 0.08]}],
+        [{"color": [1.00, 0.88, 0.28]}],
+        [{"color": [0.92, 1.00, 0.64]}],
+        [{"color": [0.28, 0.10, 0.00]}]
+      ],
+      "transition": 0.56
+    },
+    "symmetry": 5,
+    "distortion": 1.1,
+    "detail": 1.25,
+    "smoothing": 5,
+    "smoothing_radius_pixels": 1,
+    "brightness": 1.04,
+    "contrast": 1.34
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Mandelbrot Julia Morph Camera",
+  "source": {
+    "expression": "mix(mandelbrot(x * scale - 0.55, y * scale), julia(x * scale, y * scale, -0.72 + t * 0.16, 0.27 + u * 0.16), transition)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "zoom morph",
+        "value": 0.9
+      },
+      {
+        "name": "orbit drift",
+        "value": 0.08
+      }
+    ],
+    "layers": [
+      {
+        "name": "Fractal morph body",
+        "enabled": true,
+        "expression": "mix(mandelbrot(x * scale - 0.55, y * scale), julia(x * scale, y * scale, -0.72 + t * 0.16, 0.27 + u * 0.16), transition)",
+        "gain": 1.4,
+        "bias": -0.08,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x / (1 + phase * p1) + t * p2",
+        "domain_y": "y / (1 + phase * p1) + u * p2",
+        "domain_influence": 1
+      },
+      {
+        "name": "Orbit contour texture",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * sin(prev * 28 + a * symmetry)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.35,
+        "blend_mode": "difference",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

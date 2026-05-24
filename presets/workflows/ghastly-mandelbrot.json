@@ -1,0 +1,162 @@
+{
+  "asset_type": "workflow_preset",
+  "schema_version": 1,
+  "name": "Ghastly Mandelbrot",
+  "render_params": {
+    "patterns": [
+      {
+        "name": "Orbit trap fractal",
+        "enabled": true,
+        "source": {
+          "expression": "smoothstep(0.08, 0.65, abs(mandelbrot(x * scale - 0.55, y * scale + 0.08) - 0.5))",
+          "gain": 1,
+          "bias": 0,
+          "controls": [
+            {"name": "trap frequency", "value": 40},
+            {"name": "orbit warp", "value": 0.16}
+          ],
+          "layers": [
+            {
+              "name": "Fractal trap body",
+              "expression": "smoothstep(0.08, 0.65, abs(mandelbrot((x + sin(y * 3 + t) * p2) * scale - 0.55, (y + cos(x * 3 + u) * p2) * scale + 0.08) - 0.5))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace",
+              "domain_x": "x + sin(y * 3 + t) * p2",
+              "domain_y": "y + cos(x * 3 + u) * p2",
+              "domain_influence": 0.45
+            },
+            {
+              "name": "Orbit contour",
+              "expression": "0.5 + 0.5 * sin(prev * p1 + a * symmetry)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.62,
+              "blend_mode": "screen"
+            }
+          ]
+        },
+        "strength": 0.8,
+        "scale": 1.28,
+        "motion": 0.7,
+        "camera_zoom_loop": 0.18
+      },
+      {
+        "name": "Julia heat ghost",
+        "enabled": true,
+        "source": {
+          "expression": "julia(x * scale, y * scale, -0.72 + t * motion * 0.2, 0.27 + u * motion * 0.2)",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Looped Julia body",
+              "expression": "julia(x * scale * (1.0 + phase * 0.35), y * scale * (1.0 + phase * 0.35), -0.72 + t * motion * 0.2, 0.27 + u * motion * 0.2)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace"
+            },
+            {
+              "name": "Thermal rings",
+              "expression": "0.5 + 0.5 * sin(prev * 30 + r * scale * 8 + u)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.5,
+              "blend_mode": "difference"
+            }
+          ]
+        },
+        "strength": 0.45,
+        "scale": 1.05,
+        "motion": -0.65,
+        "camera_orbit": 0.08
+      }
+    ],
+    "effects": [
+      {
+        "name": "Infrared angular shutter",
+        "enabled": true,
+        "source": {
+          "expression": "0.7 + 0.3 * smoothstep(0.2, 0.9, abs(sin(a * symmetry + t * motion)))",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Rotating angular shutter",
+              "expression": "0.7 + 0.3 * smoothstep(0.2, 0.9, abs(sin(a * symmetry + t * motion)))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace"
+            }
+          ],
+          "effect_blend_mode": "contrast"
+        },
+        "blend_mode": "contrast",
+        "strength": 0.42,
+        "scale": 1.0,
+        "motion": 1.0
+      },
+      {
+        "name": "Radial heat mask",
+        "enabled": true,
+        "source": {
+          "expression": "1 - smoothstep(0.25, 1.35, r)",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Vignette falloff",
+              "expression": "1 - smoothstep(0.25, 1.35, r)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace"
+            }
+          ],
+          "effect_blend_mode": "mask"
+        },
+        "blend_mode": "mask",
+        "strength": 0.28,
+        "scale": 1.0,
+        "motion": 0.0
+      }
+    ],
+    "zoom": 1.85,
+    "center_x": -0.08,
+    "center_y": 0.02,
+    "rotation_speed": 0.02,
+    "color_speed": 0.72,
+    "color_phase": 0.21,
+    "palette": "fire",
+    "custom_gradient": {
+      "enabled": true,
+      "colors": [
+        [0.00, 0.00, 0.00],
+        [0.28, 0.00, 0.04],
+        [0.84, 0.06, 0.00],
+        [1.00, 0.42, 0.02],
+        [1.00, 0.82, 0.18],
+        [0.55, 0.00, 0.36]
+      ],
+      "color_transitions": [
+        [{"color": [0.05, 0.00, 0.06]}],
+        [{"color": [0.45, 0.00, 0.02]}],
+        [{"color": [1.00, 0.12, 0.00]}],
+        [{"color": [1.00, 0.55, 0.00]}],
+        [{"color": [1.00, 1.00, 0.36]}],
+        [{"color": [0.35, 0.00, 0.55]}]
+      ],
+      "transition": 0.52
+    },
+    "symmetry": 9,
+    "distortion": 1.05,
+    "detail": 1.8,
+    "smoothing": 6,
+    "smoothing_radius_pixels": 1.1,
+    "brightness": 1.08,
+    "contrast": 1.5
+  }
+}

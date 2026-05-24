@@ -1,0 +1,43 @@
+{
+  "asset_type": "effect_source",
+  "schema_version": 1,
+  "name": "Liquid Glass Modulator",
+  "source": {
+    "expression": "0.75 + 0.25 * sin((x + fbm(x * 3, y * 3) * 0.4) * scale * 14 + t * motion)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "warp scale",
+        "value": 3
+      },
+      {
+        "name": "warp amount",
+        "value": 0.28
+      }
+    ],
+    "layers": [
+      {
+        "name": "Liquid modulation",
+        "enabled": true,
+        "expression": "0.75 + 0.25 * sin((x + fbm(x * 3, y * 3) * 0.4) * scale * 14 + t * motion)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + fbm(x * p1 + t, y * p1) * p2",
+        "domain_y": "y + fbm(y * p1 + u, x * p1) * p2",
+        "domain_influence": 0.75
+      }
+    ],
+    "effect_blend_mode": "displace"
+  }
+}

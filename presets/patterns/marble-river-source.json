@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Marble River Veins",
+  "source": {
+    "expression": "0.5 + 0.5 * sin((x + fbm(x * p1, y * p1) * p2) * scale * 12 + y * 3)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "grain scale",
+        "value": 2.8
+      },
+      {
+        "name": "bend",
+        "value": 0.52
+      }
+    ],
+    "layers": [
+      {
+        "name": "River domain",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * sin((x + fbm(x * p1, y * p1) * p2) * scale * 12 + y * 3)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + fbm(x * p1 + t, y * p1) * p2",
+        "domain_y": "y + fbm(y * p1, x * p1 + u) * p2",
+        "domain_influence": 1
+      },
+      {
+        "name": "Stone grain",
+        "enabled": true,
+        "expression": "fbm(x * scale * 9, y * scale * 9) * 0.5 + 0.5",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.3,
+        "blend_mode": "multiply",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

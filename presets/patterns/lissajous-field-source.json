@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Lissajous Vector Field",
+  "source": {
+    "expression": "0.5 + 0.5 * sin(sin(x * scale * p1 + t) * 6 + cos(y * scale * p2 + u) * 6)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "x frequency",
+        "value": 3.2
+      },
+      {
+        "name": "y frequency",
+        "value": 4.7
+      }
+    ],
+    "layers": [
+      {
+        "name": "Vector lobes",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * sin(sin(x * scale * p1 + t) * 6 + cos(y * scale * p2 + u) * 6)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "sin(x * p1 + y * 0.6 + t) + x * 0.35",
+        "domain_y": "cos(y * p2 - x * 0.4 + u) + y * 0.35",
+        "domain_influence": 0.65
+      },
+      {
+        "name": "Phase lattice",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * cos((x - y) * scale * 11 + prev * 4)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.35,
+        "blend_mode": "difference",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

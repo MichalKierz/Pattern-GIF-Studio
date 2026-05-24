@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Nebula Noise Cloud",
+  "source": {
+    "expression": "fbm(x * scale * p1 + t * motion, y * scale * p1 + u * motion) * 0.5 + 0.5",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "cloud scale",
+        "value": 1.7
+      },
+      {
+        "name": "nebula drift",
+        "value": 0.38
+      }
+    ],
+    "layers": [
+      {
+        "name": "Soft cloud volume",
+        "enabled": true,
+        "expression": "fbm(x * scale * p1 + t * motion, y * scale * p1 + u * motion) * 0.5 + 0.5",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + ridge(x * 2, y * 2) * p2",
+        "domain_y": "y + fbm(y * 2, x * 2) * p2",
+        "domain_influence": 0.8
+      },
+      {
+        "name": "Star dust",
+        "enabled": true,
+        "expression": "smoothstep(0.56, 0.98, noise(x * scale * 30 + prev * 3, y * scale * 30 - prev * 2))",
+        "gain": 1.35,
+        "bias": 0,
+        "opacity": 0.85,
+        "blend_mode": "screen",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

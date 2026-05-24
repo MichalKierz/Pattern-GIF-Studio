@@ -1,0 +1,195 @@
+{
+  "asset_type": "workflow_preset",
+  "schema_version": 1,
+  "name": "Deep Water Glass Stack",
+  "render_params": {
+    "patterns": [
+      {
+        "name": "Domain warped water",
+        "enabled": true,
+        "source": {
+          "expression": "0.5 + 0.5 * sin(y * scale * 18 + fbm(x * 3, y * 3) * 5 + t * motion)",
+          "gain": 1,
+          "bias": 0,
+          "controls": [
+            {
+              "name": "flow scale",
+              "value": 2.6
+            },
+            {
+              "name": "warp amount",
+              "value": 0.32
+            }
+          ],
+          "layers": [
+            {
+              "name": "Broad current warp",
+              "expression": "0.5 + 0.5 * sin(y * scale * 18 + fbm(x * 3, y * 3) * 5 + t * motion)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace",
+              "domain_x": "x + fbm(x * p1 + t * motion, y * p1 + u * motion) * p2",
+              "domain_y": "y + fbm(x * p1 - u * motion, y * p1 + t * motion) * p2",
+              "domain_influence": 0.85
+            },
+            {
+              "name": "Small crossing ripples",
+              "expression": "0.5 + 0.5 * sin((x + y) * scale * 24 + fbm(x * 8, y * 8) * 3 + prev * 2)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.45,
+              "blend_mode": "screen",
+              "repeat_x": 1.1,
+              "repeat_y": 0.9,
+              "motion_x": 0.25
+            }
+          ]
+        },
+        "strength": 0.72,
+        "scale": 1.22,
+        "motion": 0.95,
+        "camera_zoom_loop": 0.05
+      },
+      {
+        "name": "Cellular foam skin",
+        "enabled": true,
+        "source": {
+          "expression": "smoothstep(0.22, 0.85, 1 - cell(x * scale * 5 + t * motion, y * scale * 5 + u * motion))",
+          "gain": 1,
+          "bias": 0,
+          "controls": [
+            {
+              "name": "cell scale",
+              "value": 2.2
+            },
+            {
+              "name": "domain pull",
+              "value": 0.22
+            }
+          ],
+          "layers": [
+            {
+              "name": "Soft cell bodies",
+              "expression": "smoothstep(0.22, 0.85, 1 - cell(x * scale * p1 + t * motion, y * scale * p1 + u * motion))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.85,
+              "blend_mode": "replace",
+              "domain_x": "x + sin(y * scale * 4 + t) * p2",
+              "domain_y": "y + cos(x * scale * 4 + u) * p2",
+              "domain_influence": 0.6
+            },
+            {
+              "name": "Foam edge sparkle",
+              "expression": "smoothstep(0.40, 0.52, abs(fract(prev * 9 + r * 2.2) - 0.5))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.55,
+              "blend_mode": "difference"
+            }
+          ]
+        },
+        "strength": 0.52,
+        "scale": 1.8,
+        "motion": -0.75,
+        "camera_orbit": 0.04
+      }
+    ],
+    "effects": [
+      {
+        "name": "Liquid glass displacement",
+        "enabled": true,
+        "source": {
+          "expression": "0.75 + 0.25 * sin((x + fbm(x * 3, y * 3) * 0.4) * scale * 14 + t * motion)",
+          "gain": 1,
+          "bias": 0,
+          "controls": [
+            {
+              "name": "warp scale",
+              "value": 3
+            },
+            {
+              "name": "warp amount",
+              "value": 0.28
+            }
+          ],
+          "layers": [
+            {
+              "name": "Liquid modulation",
+              "expression": "0.75 + 0.25 * sin((x + fbm(x * 3, y * 3) * 0.4) * scale * 14 + t * motion)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace",
+              "domain_x": "x + fbm(x * p1 + t, y * p1) * p2",
+              "domain_y": "y + fbm(y * p1 + u, x * p1) * p2",
+              "domain_influence": 0.75
+            }
+          ],
+          "effect_blend_mode": "displace"
+        },
+        "blend_mode": "displace",
+        "strength": 0.36,
+        "scale": 2.2,
+        "motion": 1.1
+      },
+      {
+        "name": "Soft caustic bloom",
+        "enabled": true,
+        "source": {
+          "expression": "smoothstep(0.68, 0.98, fbm(x * scale + t, y * scale + u))",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Soft bloom field",
+              "expression": "smoothstep(0.68, 0.98, fbm(x * scale + t, y * scale + u))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace"
+            }
+          ],
+          "effect_blend_mode": "screen"
+        },
+        "blend_mode": "screen",
+        "strength": 0.42,
+        "scale": 2.8,
+        "motion": 0.7
+      }
+    ],
+    "zoom": 1.25,
+    "rotation_speed": 0.04,
+    "color_speed": 0.82,
+    "color_phase": 0.08,
+    "palette": "aurora",
+    "custom_gradient": {
+      "enabled": true,
+      "colors": [
+        [0.01, 0.04, 0.12],
+        [0.00, 0.30, 0.52],
+        [0.00, 0.62, 0.70],
+        [0.18, 0.90, 0.80],
+        [0.86, 1.00, 0.70],
+        [0.08, 0.10, 0.26]
+      ],
+      "color_transitions": [
+        [{"color": [0.00, 0.02, 0.10]}],
+        [{"color": [0.00, 0.18, 0.42]}],
+        [{"color": [0.00, 0.76, 0.68]}],
+        [{"color": [0.30, 1.00, 0.86]}],
+        [{"color": [0.78, 0.96, 1.00]}],
+        [{"color": [0.04, 0.08, 0.20]}]
+      ],
+      "transition": 0.58
+    },
+    "symmetry": 4,
+    "distortion": 1.4,
+    "detail": 1.35,
+    "smoothing": 7,
+    "smoothing_radius_pixels": 1.4,
+    "brightness": 1.06,
+    "contrast": 1.28
+  }
+}

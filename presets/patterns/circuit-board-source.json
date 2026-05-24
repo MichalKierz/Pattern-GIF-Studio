@@ -1,0 +1,53 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Circuit Board Field",
+  "source": {
+    "expression": "max(smoothstep(0.46, 0.5, abs(fract(x * scale * 6) - 0.5)), smoothstep(0.46, 0.5, abs(fract(y * scale * 6) - 0.5)))",
+    "gain": 1,
+    "bias": 0,
+    "controls": [],
+    "layers": [
+      {
+        "name": "Orthogonal traces",
+        "enabled": true,
+        "expression": "max(smoothstep(0.42, 0.5, abs(fract(x * scale * 7) - 0.5)), smoothstep(0.42, 0.5, abs(fract(y * scale * 5) - 0.5)))",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + floor(fbm(x * 3, y * 3) * 3) * 0.06",
+        "domain_y": "y + floor(fbm(y * 3, x * 3) * 3) * 0.06",
+        "domain_influence": 0.7
+      },
+      {
+        "name": "Node pads",
+        "enabled": true,
+        "expression": "1 - smoothstep(0.18, 0.74, cell(x * scale * 7, y * scale * 7))",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.7,
+        "blend_mode": "max",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

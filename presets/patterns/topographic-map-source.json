@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Topographic Contour Map",
+  "source": {
+    "expression": "fract((fbm(x * scale * p1 * 5, y * scale * p1 * 5) + r * p2 + x * scale * 0.7 - y * scale * 0.5) * 9)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "terrain frequency",
+        "value": 2.2
+      },
+      {
+        "name": "radial drift",
+        "value": 0.35
+      }
+    ],
+    "layers": [
+      {
+        "name": "Terrain elevation",
+        "enabled": true,
+        "expression": "fbm(x * scale * p1 * 5 + sin(y * scale * 6) * 0.12, y * scale * p1 * 5 + cos(x * scale * 6) * 0.12) * 0.5 + 0.5",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + fbm(x * 4 + t, y * 4) * 0.32",
+        "domain_y": "y + fbm(x * 4, y * 4 + u) * 0.32",
+        "domain_influence": 0.75
+      },
+      {
+        "name": "Contour lines",
+        "enabled": true,
+        "expression": "1 - smoothstep(0.0, 0.05, abs(fract(prev * 18 + x * scale * 0.75 - y * scale * 0.55) - 0.5) - 0.41)",
+        "gain": 1.15,
+        "bias": 0,
+        "opacity": 0.82,
+        "blend_mode": "screen",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Reaction Diffusion Skin",
+  "source": {
+    "expression": "smoothstep(0.25, 0.85, abs(sin((fbm(x * scale * p1, y * scale * p1) + cell(x * scale * p2, y * scale * p2)) * 10)))",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "large cells",
+        "value": 2.2
+      },
+      {
+        "name": "small cells",
+        "value": 7.4
+      }
+    ],
+    "layers": [
+      {
+        "name": "Organic reaction base",
+        "enabled": true,
+        "expression": "smoothstep(0.25, 0.85, abs(sin((fbm(x * scale * p1, y * scale * p1) + cell(x * scale * p2, y * scale * p2)) * 10)))",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + ridge(x * 3 + t, y * 3) * 0.28",
+        "domain_y": "y + ridge(y * 3 + u, x * 3) * 0.28",
+        "domain_influence": 0.85
+      },
+      {
+        "name": "Membrane edges",
+        "enabled": true,
+        "expression": "smoothstep(0.38, 0.5, abs(fract(prev * 8) - 0.5))",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.5,
+        "blend_mode": "screen",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

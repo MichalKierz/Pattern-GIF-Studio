@@ -1,0 +1,53 @@
+{
+  "asset_type": "workflow_preset",
+  "schema_version": 1,
+  "name": "Liquid Neon",
+  "render_params": {
+    "patterns": [
+      {
+        "name": "Contour foam",
+        "enabled": true,
+        "source": {
+          "expression": "0.5 + 0.5 * sin((noise(x * scale * 5 + t * motion, y * scale * 5 + u * motion) + x * 0.35 - y * 0.2) * 28)",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Topographic lines",
+              "expression": "0.5 + 0.5 * sin((noise(x * scale * 5 + t * motion, y * scale * 5 + u * motion) + x * 0.35 - y * 0.2) * 28)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace",
+              "repeat_x": 1.35,
+              "repeat_y": 0.9
+            },
+            {
+              "name": "Cellular foam",
+              "expression": "smoothstep(0.08, 0.75, abs(noise(x * scale * 9 + t * motion, y * scale * 9 + u * motion) - noise(x * scale * 18 - u, y * scale * 18 + t)))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.42,
+              "blend_mode": "screen"
+            }
+          ]
+        },
+        "strength": 1,
+        "scale": 1.1,
+        "motion": 0.7
+      }
+    ],
+    "effects": [],
+    "zoom": 1.25,
+    "rotation_speed": 0,
+    "color_speed": 0.7,
+    "palette": "aurora",
+    "symmetry": 5,
+    "distortion": 1,
+    "detail": 1,
+    "smoothing": 5,
+    "smoothing_radius_pixels": 1.2,
+    "brightness": 1.08,
+    "contrast": 1.3
+  }
+}

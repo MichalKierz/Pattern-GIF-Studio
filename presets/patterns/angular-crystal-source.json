@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Angular Crystal Facets",
+  "source": {
+    "expression": "fract(abs(x) * scale * p1 + abs(y) * scale * p2 + floor(a * symmetry / tau) * 0.21)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "x facets",
+        "value": 5.5
+      },
+      {
+        "name": "y facets",
+        "value": 3.2
+      }
+    ],
+    "layers": [
+      {
+        "name": "Facet planes",
+        "enabled": true,
+        "expression": "fract(abs(x) * scale * p1 + abs(y) * scale * p2 + floor(a * symmetry / tau) * 0.21)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      },
+      {
+        "name": "Facet cracks",
+        "enabled": true,
+        "expression": "smoothstep(0.46, 0.5, abs(fract(prev * 8 + r * 2) - 0.5))",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.62,
+        "blend_mode": "difference",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

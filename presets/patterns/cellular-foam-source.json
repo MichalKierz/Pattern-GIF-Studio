@@ -1,0 +1,62 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Cellular Foam Field",
+  "source": {
+    "expression": "1 - cell(x * scale * p1, y * scale * p1)",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "cell density",
+        "value": 4.2
+      },
+      {
+        "name": "flow bend",
+        "value": 0.22
+      }
+    ],
+    "layers": [
+      {
+        "name": "Cellular cells",
+        "enabled": true,
+        "expression": "1 - cell(x * scale * p1, y * scale * p1)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + sin(y * 4 + t) * p2",
+        "domain_y": "y + cos(x * 4 + u) * p2",
+        "domain_influence": 0.75
+      },
+      {
+        "name": "Soft foam veins",
+        "enabled": true,
+        "expression": "smoothstep(0.22, 0.88, ridge(x * scale * 5, y * scale * 5))",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.42,
+        "blend_mode": "max",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

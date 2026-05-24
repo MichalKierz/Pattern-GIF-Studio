@@ -1,0 +1,58 @@
+{
+  "asset_type": "pattern_source",
+  "schema_version": 1,
+  "name": "Isometric Tile Field",
+  "source": {
+    "expression": "max(smoothstep(0.45, 0.5, abs(fract((x + y) * scale * p1) - 0.5)), smoothstep(0.45, 0.5, abs(fract((x - y) * scale * p1) - 0.5)))",
+    "gain": 1,
+    "bias": 0,
+    "controls": [
+      {
+        "name": "tile density",
+        "value": 5
+      }
+    ],
+    "layers": [
+      {
+        "name": "Diamond tile grid",
+        "enabled": true,
+        "expression": "max(smoothstep(0.45, 0.5, abs(fract((x + y) * scale * p1) - 0.5)), smoothstep(0.45, 0.5, abs(fract((x - y) * scale * p1) - 0.5)))",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 1,
+        "blend_mode": "replace",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x + floor(fbm(x * 2, y * 2) * 4) * 0.04",
+        "domain_y": "y + floor(fbm(y * 2, x * 2) * 4) * 0.04",
+        "domain_influence": 0.5
+      },
+      {
+        "name": "Tile shade",
+        "enabled": true,
+        "expression": "0.5 + 0.5 * sin((x + y) * scale * 2 + prev * 3)",
+        "gain": 1,
+        "bias": 0,
+        "opacity": 0.35,
+        "blend_mode": "multiply",
+        "repeat_x": 1,
+        "repeat_y": 1,
+        "warp_x": 0,
+        "warp_y": 0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "motion_x": 0,
+        "motion_y": 0,
+        "domain_x": "x",
+        "domain_y": "y",
+        "domain_influence": 0
+      }
+    ]
+  }
+}

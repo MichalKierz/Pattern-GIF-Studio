@@ -1,0 +1,164 @@
+{
+  "asset_type": "workflow_preset",
+  "schema_version": 1,
+  "name": "Circuit Glitch Bloom",
+  "render_params": {
+    "patterns": [
+      {
+        "name": "Circuit board traces",
+        "enabled": true,
+        "source": {
+          "expression": "max(smoothstep(0.42, 0.5, abs(fract(x * scale * 7) - 0.5)), smoothstep(0.42, 0.5, abs(fract(y * scale * 5) - 0.5)))",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Orthogonal traces",
+              "expression": "max(smoothstep(0.42, 0.5, abs(fract(x * scale * 7) - 0.5)), smoothstep(0.42, 0.5, abs(fract(y * scale * 5) - 0.5)))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace",
+              "domain_x": "x + floor(fbm(x * 3, y * 3) * 3) * 0.06",
+              "domain_y": "y + floor(fbm(y * 3, x * 3) * 3) * 0.06",
+              "domain_influence": 0.7
+            },
+            {
+              "name": "Node pads",
+              "expression": "1 - smoothstep(0.18, 0.74, cell(x * scale * 7, y * scale * 7))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.7,
+              "blend_mode": "max"
+            }
+          ]
+        },
+        "strength": 0.7,
+        "scale": 1.55,
+        "motion": 0.35
+      },
+      {
+        "name": "Lissajous signal field",
+        "enabled": true,
+        "source": {
+          "expression": "0.5 + 0.5 * sin(sin(x * scale * p1 + t * motion) * p2 + cos(y * scale * p3 + u * motion) * p4)",
+          "gain": 1,
+          "bias": 0,
+          "controls": [
+            {"name": "x frequency", "value": 3.4},
+            {"name": "x amount", "value": 2.2},
+            {"name": "y frequency", "value": 4.6},
+            {"name": "y amount", "value": 2.8}
+          ],
+          "layers": [
+            {
+              "name": "Signal field",
+              "expression": "0.5 + 0.5 * sin(sin(x * scale * p1 + t * motion) * p2 + cos(y * scale * p3 + u * motion) * p4)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace",
+              "domain_x": "x + sin(y * p3 + t) * 0.08",
+              "domain_y": "y + cos(x * p1 + u) * 0.08",
+              "domain_influence": 0.65
+            },
+            {
+              "name": "Prev signal contour",
+              "expression": "0.5 + 0.5 * cos((x - y) * scale * 11 + prev * 4)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 0.55,
+              "blend_mode": "difference"
+            }
+          ]
+        },
+        "strength": 0.55,
+        "scale": 1.25,
+        "motion": -1.05,
+        "camera_zoom_loop": 0.10
+      }
+    ],
+    "effects": [
+      {
+        "name": "Scanline difference",
+        "enabled": true,
+        "source": {
+          "expression": "0.5 + 0.5 * sin(y * scale * 42 + t * motion)",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Animated scanlines",
+              "expression": "0.5 + 0.5 * sin(y * scale * 42 + t * motion)",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace"
+            }
+          ],
+          "effect_blend_mode": "difference"
+        },
+        "blend_mode": "difference",
+        "strength": 0.45,
+        "scale": 1.15,
+        "motion": 1.9
+      },
+      {
+        "name": "Edge bloom",
+        "enabled": true,
+        "source": {
+          "expression": "0.65 + 0.35 * smoothstep(0.34, 0.5, abs(fract(prev * 12 + r * scale) - 0.5))",
+          "gain": 1,
+          "bias": 0,
+          "layers": [
+            {
+              "name": "Contour modulation",
+              "expression": "0.65 + 0.35 * smoothstep(0.34, 0.5, abs(fract((x * x - y * y) * scale * 10 + r * 2) - 0.5))",
+              "gain": 1,
+              "bias": 0,
+              "opacity": 1,
+              "blend_mode": "replace"
+            }
+          ],
+          "effect_blend_mode": "screen"
+        },
+        "blend_mode": "screen",
+        "strength": 0.38,
+        "scale": 2.4,
+        "motion": 0.4
+      }
+    ],
+    "zoom": 1.05,
+    "rotation_speed": 0.03,
+    "color_speed": 1.15,
+    "color_phase": 0.18,
+    "palette": "candy",
+    "custom_gradient": {
+      "enabled": true,
+      "colors": [
+        [0.04, 0.00, 0.10],
+        [0.95, 0.04, 0.64],
+        [0.00, 0.88, 1.00],
+        [1.00, 0.95, 0.10],
+        [0.30, 0.04, 1.00],
+        [1.00, 0.28, 0.18]
+      ],
+      "color_transitions": [
+        [{"color": [0.16, 0.00, 0.26]}],
+        [{"color": [1.00, 0.10, 0.24]}, {"color": [0.78, 0.00, 1.00]}],
+        [{"color": [0.00, 0.55, 1.00]}],
+        [{"color": [0.70, 1.00, 0.00]}],
+        [{"color": [0.08, 0.20, 1.00]}],
+        [{"color": [1.00, 0.62, 0.02]}]
+      ],
+      "transition": 0.62
+    },
+    "symmetry": 6,
+    "distortion": 1.6,
+    "detail": 1.7,
+    "smoothing": 3,
+    "smoothing_radius_pixels": 0.8,
+    "brightness": 1.05,
+    "contrast": 1.42
+  }
+}
